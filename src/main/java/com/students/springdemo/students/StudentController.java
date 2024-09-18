@@ -16,7 +16,8 @@ public class StudentController {
                 "john",
                 "james",
                 "peter",
-                "andrew"
+                "andrew",
+                "simeon"
         );
     }
 }
