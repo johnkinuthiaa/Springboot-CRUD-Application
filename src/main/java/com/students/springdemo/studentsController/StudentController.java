@@ -1,4 +1,4 @@
-package com.students.springdemo.students;
+package com.students.springdemo.studentsController;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,13 +12,7 @@ import java.util.List;
 public class StudentController {
     @GetMapping("/names")
     public List<String> findAllStudents(){
-        return List.of(
-                "john",
-                "james",
-                "peter",
-                "andrew",
-                "simeon"
-        );
+        return null;
     }
 }
 
