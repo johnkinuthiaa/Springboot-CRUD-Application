@@ -35,6 +35,7 @@ public class StudentController {
     @GetMapping("/get/{email}")
     public ResponseEntity<List<Student>> getStudentByEmail(@PathVariable("email") @RequestParam String email){
         return new ResponseEntity<>(service.getStudentByEmail(email),HttpStatus.OK);
+
     }
 }
 
