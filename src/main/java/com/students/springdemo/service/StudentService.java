@@ -1,4 +1,44 @@
 package com.students.springdemo.service;
 
-public class StudentService{
+import com.students.springdemo.model.Student;
+import com.students.springdemo.repository.StudentRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+public class StudentService implements StudentServiceInterface{
+    private final StudentRepository repository;
+    public StudentService(StudentRepository repository){
+        this.repository=repository;
+    }
+    @Override
+    public List<Student> getAllStudents(){
+        return repository.findAll();
+    }
+    @Override
+    public List<Student> getStudentsByName(String name){
+        return repository.findAll().stream()
+                .filter(student->student.getStudentName().toLowerCase().contains(name.toLowerCase()))
+                .collect(Collectors.toList());
+    }
+    @Override
+    public List<Student> getStudentsFromParticularCourse(String course){
+        return repository.findAll().stream()
+                .filter(student->student.getCourse().toLowerCase().contains(course.toLowerCase()))
+                .collect(Collectors.toList());
+    }
+    @Override
+    public List<Student> getStudentByRegistrationNumber(String regNo){
+        return repository.findAll().stream()
+                .filter(student->student.getStudentRegistrationNumber().toUpperCase().contains(regNo.toUpperCase()))
+                .collect(Collectors.toList());
+    }
+    @Override
+    public List<Student> getStudentByEmail(String email){
+        return repository.findAll().stream()
+                .filter(student -> student.getStudentEmail().toLowerCase().contains(email.toLowerCase()))
+                .collect(Collectors.toList());
+    }
 }

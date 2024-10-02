@@ -52,4 +52,8 @@ public class Student {
     public void setLevel(Float level){
         this.level=level;
     }
+
+    public Float getLevel() {
+        return level;
+    }
 }
