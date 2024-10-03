@@ -11,5 +11,7 @@ public interface StudentServiceInterface {
     List<Student> getStudentsFromParticularCourse(String course);
     List<Student> getStudentByRegistrationNumber(String regNo);
     List<Student> getStudentByEmail(String email);
+    Student createNewStudent(Student student);
+    Student updateStudent(Student student,String regNo);
 
 }

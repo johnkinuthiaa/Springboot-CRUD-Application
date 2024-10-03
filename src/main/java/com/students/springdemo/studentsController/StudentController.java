@@ -37,6 +37,14 @@ public class StudentController {
         return new ResponseEntity<>(service.getStudentByEmail(email),HttpStatus.OK);
 
     }
+    @PostMapping("/create/new")
+    public ResponseEntity<Student> createNewStudent(@RequestBody Student student){
+        return new ResponseEntity<>(service.createNewStudent(student),HttpStatus.OK);
+    }
+    @PutMapping("/update/{reg-number}")
+    public ResponseEntity<Student> updateStudent(@PathVariable("reg-number")@RequestBody Student student,@RequestParam String regNo){
+        return new ResponseEntity<>(service.updateStudent(student,regNo),HttpStatus.OK);
+    }
 }
 
 

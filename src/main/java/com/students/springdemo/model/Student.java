@@ -8,7 +8,6 @@ import jakarta.persistence.Id;
 @Entity
 public class Student {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String studentRegistrationNumber;
     private String studentName;
@@ -24,7 +23,12 @@ public class Student {
         this.course=course;
         this.level=level;
     }
-
+    public void setId(Long id){
+        this.id=id;
+    }
+    public Long getId(){
+        return id;
+    }
     public void setStudentRegistrationNumber(String studentRegistrationNumber){
         this.studentRegistrationNumber=studentRegistrationNumber;
     }
