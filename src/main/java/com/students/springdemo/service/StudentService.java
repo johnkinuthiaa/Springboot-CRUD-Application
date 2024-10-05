@@ -32,12 +32,6 @@ public class StudentService implements StudentServiceInterface{
                 .collect(Collectors.toList());
     }
     @Override
-    public List<Student> getStudentByRegistrationNumber(String regNo){
-        return repository.findAll().stream()
-                .filter(student->student.getStudentRegistrationNumber().toLowerCase().contains(regNo.toLowerCase()))
-                .collect(Collectors.toList());
-    }
-    @Override
     public List<Student> getStudentByEmail(String email){
         return repository.findAll().stream()
                 .filter(student -> student.getStudentEmail().toLowerCase().contains(email.toLowerCase()))
@@ -52,16 +46,23 @@ public class StudentService implements StudentServiceInterface{
 
     }
     @Override
-    public Student updateStudent(Student student,String regNo) throws RuntimeException{
-        List<Student> regNoPresent =repository.findAll().stream()
-                .filter(student1 -> student.getStudentRegistrationNumber().toLowerCase().contains(regNo.toLowerCase()))
-                .collect(Collectors.toList());
-        if(regNoPresent.isEmpty()){
-            throw new RuntimeException("no student with given registration number was found");
+    public Student updateStudent(Student student,Long id) throws RuntimeException{
+        if(repository.findById(id).isEmpty()){
+            throw new RuntimeException("student not found");
         }
-        else{
-            repository.deleteById(student.getId());
+        else {
+            repository.deleteById(id);
         }
         return repository.save(student);
+    }
+    @Override
+    public String deleteStudentById(Long id) throws RuntimeException{
+        if(repository.findById(id).isEmpty()){
+            throw new RuntimeException("student does not exist");
+        }
+        else {
+            repository.deleteById(id);
+        }
+        return "student with id"+id+"deleted";
     }
 }

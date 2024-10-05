@@ -20,20 +20,16 @@ public class StudentController {
     public ResponseEntity<List<Student>> findAllStudents(){
         return new ResponseEntity<>(service.getAllStudents(), HttpStatus.OK);
     }
-    @GetMapping("/get/{name}")
-    public ResponseEntity<List<Student>> getStudentsByName(@PathVariable("name") @RequestParam String name){
+    @GetMapping("/get/name")
+    public ResponseEntity<List<Student>> getStudentsByName( @RequestParam String name){
         return new ResponseEntity<>(service.getStudentsByName(name),HttpStatus.OK);
     }
     @GetMapping("/get/{course}")
     public ResponseEntity<List<Student>> getStudentsByCourse(@PathVariable("course") @RequestParam String course){
         return new ResponseEntity<>(service.getStudentsFromParticularCourse(course),HttpStatus.OK);
     }
-    @GetMapping("/get/{regNo}")
-    public ResponseEntity<List<Student>> getStudentByRegistrationNumber(@PathVariable("regNo") @RequestParam String regNo){
-        return new ResponseEntity<>(service.getStudentByRegistrationNumber(regNo),HttpStatus.OK);
-    }
-    @GetMapping("/get/{email}")
-    public ResponseEntity<List<Student>> getStudentByEmail(@PathVariable("email") @RequestParam String email){
+    @GetMapping("/get/email")
+    public ResponseEntity<List<Student>> getStudentByEmail(@RequestParam String email){
         return new ResponseEntity<>(service.getStudentByEmail(email),HttpStatus.OK);
 
     }
@@ -41,9 +37,13 @@ public class StudentController {
     public ResponseEntity<Student> createNewStudent(@RequestBody Student student){
         return new ResponseEntity<>(service.createNewStudent(student),HttpStatus.OK);
     }
-    @PutMapping("/update/{reg-number}")
-    public ResponseEntity<Student> updateStudent(@PathVariable("reg-number")@RequestBody Student student,@RequestParam String regNo){
-        return new ResponseEntity<>(service.updateStudent(student,regNo),HttpStatus.OK);
+    @PutMapping("/update/reg-number")
+    public ResponseEntity<Student> updateStudent(@RequestBody Student student,@RequestParam Long id){
+        return new ResponseEntity<>(service.updateStudent(student,id),HttpStatus.OK);
+    }
+    @DeleteMapping("/delete/by/id")
+    public ResponseEntity<String> deleteStudentById(@RequestParam Long id){
+        return new ResponseEntity<>(service.deleteStudentById(id),HttpStatus.OK);
     }
 }
 

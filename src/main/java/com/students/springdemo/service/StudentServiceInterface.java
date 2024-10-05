@@ -9,9 +9,9 @@ public interface StudentServiceInterface {
     List<Student> getAllStudents();
     List<Student> getStudentsByName(String name);
     List<Student> getStudentsFromParticularCourse(String course);
-    List<Student> getStudentByRegistrationNumber(String regNo);
     List<Student> getStudentByEmail(String email);
     Student createNewStudent(Student student);
-    Student updateStudent(Student student,String regNo);
+    Student updateStudent(Student student,Long id);
+    String deleteStudentById(Long id);
 
 }
